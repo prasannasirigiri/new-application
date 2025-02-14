@@ -15,7 +15,7 @@ public class DemoApplication {
 
 @RestController
 @RequestMapping("/api")
-class DemoController {
+class ApiController {  // Renamed from DemoController
     @GetMapping("/hello")
     public String hello() {
         return "Hello, World!";
