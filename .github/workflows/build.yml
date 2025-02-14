@@ -33,7 +33,9 @@ jobs:
 
       - name: Decode and store Maven settings.xml
         run: |
+          mkdir -p $HOME/.m2
           echo "${{ secrets.MAVEN_SETTINGS_XML }}" | base64 --decode > $HOME/.m2/settings.xml
+          cat $HOME/.m2/settings.xml  # Debugging step to verify contents
 
       - name: Build and Deploy to AWS CodeArtifact
         run: mvn clean deploy --settings $HOME/.m2/settings.xml
