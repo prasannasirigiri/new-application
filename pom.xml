@@ -42,11 +42,21 @@
 
     <build>
         <plugins>
+            <!-- Spring Boot Maven Plugin to create an executable JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
+            <!-- Ensure JAR includes dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -54,7 +64,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.NewApplication</mainClass>
+                            <mainClass>org.springframework.boot.loader.JarLauncher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
