@@ -1,0 +1,19 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        <server>
+            <id>aws-codeartifact</id>
+            <username>aws</username>
+            <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <id>aws-codeartifact</id>
+            <mirrorOf>*</mirrorOf>
+            <url>https://new-application-727646466958.d.codeartifact.us-east-1.amazonaws.com/maven/new-application/</url>
+        </mirror>
+    </mirrors>
+</settings>
