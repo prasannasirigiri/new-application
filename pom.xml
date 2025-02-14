@@ -16,11 +16,14 @@
     </properties>
 
     <dependencies>
+        <!-- Spring Boot Web Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+
+        <!-- Spring Boot Test Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -54,6 +57,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>com.example.DemoApplication</mainClass>
+                </configuration>
             </plugin>
 
             <!-- Ensure JAR includes dependencies -->
@@ -64,7 +70,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.springframework.boot.loader.JarLauncher</mainClass>
+                            <mainClass>com.example.DemoApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
