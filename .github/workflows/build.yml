@@ -20,13 +20,13 @@ jobs:
       - name: Clean Old Compiled Files
         run: rm -rf target/
 
-      # 🔹 Set up Java 17 and Force Fresh Cache
+      # 🔹 Set up Java 17 (Fixed cache key)
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'maven-v2'  # Force fresh cache
+          cache: 'maven'  # Fixed cache key
 
       # 🔹 Verify Java Version to Ensure Correct JDK is Used
       - name: Verify Java Version Before Build
