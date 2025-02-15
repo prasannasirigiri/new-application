@@ -6,7 +6,7 @@
     <groupId>com.example</groupId>
     <artifactId>new-application</artifactId>
     <version>1.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging> <!-- Changed from jar to war -->
 
     <name>New Application</name>
 
@@ -16,11 +16,25 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web Starter -->
+        <!-- Spring Boot Web Starter without embedded Tomcat -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- External Tomcat dependency provided by the server -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Spring Boot Test Starter -->
@@ -31,14 +45,13 @@
             <scope>test</scope>
         </dependency>
     
-
+        <!-- Logback for logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.4.11</version>
         </dependency>
     </dependencies>
-
 
     <repositories>
         <repository>
@@ -53,24 +66,17 @@
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin to create an executable JAR -->
+            <!-- Spring Boot Maven Plugin to create an executable WAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <mainClass>com.example.DemoApplication</mainClass>
                 </configuration>
             </plugin>
 
-            <!-- Ensure JAR includes dependencies -->
+            <!-- Optional: Maven JAR Plugin configuration (not required for WAR packaging) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
